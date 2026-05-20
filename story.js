@@ -197,9 +197,9 @@ const STORY = [
   {
     id: 'coffee_date',
     type: 'narrate',
-    location: 'Hangang River Park',
+    location: 'Golden Gate Park · San Francisco',
     time: 'Saturday, 6:00 PM',
-    text: 'He texts you an address at 5:58. Not a restaurant. The river park — two coffees already in hand, a bench with a view of the water, and the smug confidence of someone who planned this perfectly.',
+    text: 'He texts you an address at 5:58. Not a restaurant. Golden Gate Park — two coffees already in hand, a bench with a view of the eucalyptus trees and the distant bay, and the smug confidence of someone who planned this perfectly.',
     next: 'date_reaction',
   },
   {
@@ -237,9 +237,9 @@ const STORY = [
   {
     id: 'date_flow',
     type: 'narrate',
-    location: 'Hangang · The Bench',
+    location: 'Golden Gate Park · The Bench',
     time: 'Two hours later',
-    text: 'You talk until the river goes dark and the city lights come on. He laughs too loudly at your stories. You pretend not to love it. You\'re terrible at pretending.',
+    text: 'You talk until the park goes dark and the city lights flicker on across the bay. He laughs too loudly at your stories. You pretend not to love it. You\'re terrible at pretending.',
     next: 'almost_moment',
   },
   {
@@ -330,7 +330,7 @@ const STORY = [
   {
     id: 'good_ending_path',
     type: 'narrate',
-    location: 'Hangang · The Bench',
+    location: 'Golden Gate Park · The Bench',
     time: 'That same magical evening',
     text: '"You had a plan?" He looks delighted. "What was it?" You tell him it involved being mysterious and unavailable for exactly twenty-one days. He says that sounds exhausting. You agree. You both stay on the bench until they turn the park lights off.',
     next: 'good_ending',
@@ -343,7 +343,7 @@ const STORY = [
   {
     id: 'perfect_ending_path',
     type: 'narrate',
-    location: 'Hangang · The Bench',
+    location: 'Golden Gate Park · The Bench',
     time: 'The exact right moment',
     text: 'It\'s a good kiss. The kind that rewrites Thursday from "ordinary day" to "the day everything changed." When you pull back, he\'s laughing softly, slightly stunned. "That was not what I expected." "Did you like it?" "I\'m going to need about fifty more to form a proper opinion."',
     next: 'perfect_ending',
