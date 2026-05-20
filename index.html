@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love, Unscripted — A Gay Rom-Com Adventure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div id="splash" class="screen active">
+  <div class="splash-bg"></div>
+  <div class="splash-content">
+    <div class="series-badge">✦ INTERACTIVE SERIES ✦</div>
+    <h1 class="title">Love,<br/><em>Unscripted</em></h1>
+    <p class="tagline">A gay rom-com where <em>you</em> write the ending.</p>
+    <div class="episode-info">Season 1 · Episode 1 · "The Meet-Cute"</div>
+    <button class="btn btn-primary" onclick="startStory()">
+      <span>▶ Start Your Story</span>
+    </button>
+    <p class="disclaimer">Choices matter. Hearts will flutter. Chaos is guaranteed.</p>
+  </div>
+  <div class="floating-hearts" id="floatingHearts"></div>
+</div>
+
+<!-- CHARACTER SELECT -->
+<div id="charSelect" class="screen">
+  <div class="screen-inner">
+    <div class="chapter-header">
+      <div class="chapter-tag">Before We Begin</div>
+      <h2>Choose Your Lead</h2>
+      <p>Who are you playing as?</p>
+    </div>
+    <div class="char-grid">
+      <div class="char-card" onclick="selectChar('leo')">
+        <div class="char-avatar leo-avatar">🦁</div>
+        <div class="char-name">Leo Park</div>
+        <div class="char-desc">Barista & failed novelist. Overly dramatic, secretly soft. Makes amazing oat milk lattes and terrible decisions.</div>
+        <div class="char-tags"><span>Hopeless Romantic</span><span>Coffee Addict</span><span>Disaster</span></div>
+      </div>
+      <div class="char-card" onclick="selectChar('marco')">
+        <div class="char-avatar marco-avatar">🌊</div>
+        <div class="char-name">Marco Rivera</div>
+        <div class="char-desc">Architect & reluctant podcast host. Too organized for his own good. Has a perfectly color-coded calendar and zero chill.</div>
+        <div class="char-tags"><span>Control Freak</span><span>Secretly Funny</span><span>Planner</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY SCREEN -->
+<div id="storyScreen" class="screen">
+  <div class="video-overlay" id="videoOverlay">
+    <div class="scene-cinematic">
+      <div class="scene-location" id="sceneLocation"></div>
+      <div class="scene-time" id="sceneTime"></div>
+    </div>
+  </div>
+
+  <div class="story-container">
+    <div class="story-top">
+      <div class="episode-bar">
+        <div class="ep-label" id="epLabel">Episode 1</div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="score-display">💕 <span id="scoreDisplay">0</span></div>
+      </div>
+    </div>
+
+    <div class="story-main">
+      <div class="characters-scene" id="charactersScene">
+        <div class="char-bubble left" id="charLeft"></div>
+        <div class="char-bubble right" id="charRight"></div>
+      </div>
+
+      <div class="dialogue-box" id="dialogueBox">
+        <div class="speaker-name" id="speakerName"></div>
+        <div class="dialogue-text" id="dialogueText"></div>
+        <div class="narrator-text" id="narratorText"></div>
+      </div>
+    </div>
+
+    <div class="choices-panel" id="choicesPanel">
+      <div class="choices-prompt">What do you do?</div>
+      <div class="choices-list" id="choicesList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ENDING SCREEN -->
+<div id="endingScreen" class="screen">
+  <div class="ending-bg"></div>
+  <div class="ending-content">
+    <div class="ending-badge" id="endingBadge"></div>
+    <h2 class="ending-title" id="endingTitle"></h2>
+    <p class="ending-subtitle" id="endingSubtitle"></p>
+    <div class="ending-story" id="endingStory"></div>
+    <div class="score-final">
+      <div class="score-label">Romance Score</div>
+      <div class="score-value" id="scoreFinal"></div>
+      <div class="score-stars" id="scoreStars"></div>
+    </div>
+    <div class="ending-choices">
+      <button class="btn btn-primary" onclick="restartGame()">↺ Try Again</button>
+      <button class="btn btn-secondary" onclick="shareEnding()">♡ Share Ending</button>
+    </div>
+    <div class="share-msg" id="shareMsg"></div>
+  </div>
+</div>
+
+<script src="story.js"></script>
+</body>
+</html>

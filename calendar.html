@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="calendar.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="brand">
+        <span class="brand-icon">&#128197;</span>
+        <span class="brand-name">Calendar</span>
+      </div>
+      <button class="new-event-btn" id="newEventBtn">+ New Event</button>
+    </div>
+
+    <div class="mini-cal">
+      <div class="mini-cal-header">
+        <button class="mini-nav" id="miniPrev">&#8249;</button>
+        <span class="mini-month-label" id="miniMonthLabel"></span>
+        <button class="mini-nav" id="miniNext">&#8250;</button>
+      </div>
+      <div class="mini-cal-grid">
+        <div class="mini-day-name">Su</div>
+        <div class="mini-day-name">Mo</div>
+        <div class="mini-day-name">Tu</div>
+        <div class="mini-day-name">We</div>
+        <div class="mini-day-name">Th</div>
+        <div class="mini-day-name">Fr</div>
+        <div class="mini-day-name">Sa</div>
+      </div>
+      <div class="mini-cal-days" id="miniCalDays"></div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-title">Event Colors</div>
+      <div class="legend-items">
+        <label class="legend-item"><span class="dot" style="background:#6366f1"></span>Default</label>
+        <label class="legend-item"><span class="dot" style="background:#22c55e"></span>Personal</label>
+        <label class="legend-item"><span class="dot" style="background:#f59e0b"></span>Work</label>
+        <label class="legend-item"><span class="dot" style="background:#ef4444"></span>Important</label>
+        <label class="legend-item"><span class="dot" style="background:#ec4899"></span>Social</label>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CALENDAR -->
+  <main class="main">
+    <header class="cal-header">
+      <div class="nav-group">
+        <button class="nav-btn" id="prevMonth">&#8249;</button>
+        <button class="today-btn" id="goToday">Today</button>
+        <button class="nav-btn" id="nextMonth">&#8250;</button>
+      </div>
+      <h1 class="month-title" id="monthTitle"></h1>
+      <div class="view-group">
+        <button class="view-btn active" data-view="month">Month</button>
+        <button class="view-btn" data-view="week">Week</button>
+      </div>
+    </header>
+
+    <!-- MONTH VIEW -->
+    <div class="cal-view month-view" id="monthView">
+      <div class="cal-grid-header">
+        <div>Sun</div><div>Mon</div><div>Tue</div>
+        <div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+
+    <!-- WEEK VIEW -->
+    <div class="cal-view week-view hidden" id="weekView">
+      <div class="week-header" id="weekHeader"></div>
+      <div class="week-body">
+        <div class="time-gutter" id="timeGutter"></div>
+        <div class="week-cols" id="weekCols"></div>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<!-- EVENT MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="eventModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modalTitle">New Event</h2>
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    </div>
+    <form id="eventForm" class="modal-form">
+      <div class="form-group">
+        <label for="eventTitle">Title</label>
+        <input type="text" id="eventTitle" placeholder="Add a title" required autocomplete="off" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="eventDate">Date</label>
+          <input type="date" id="eventDate" required />
+        </div>
+        <div class="form-group">
+          <label for="eventTime">Time <span class="optional">(optional)</span></label>
+          <input type="time" id="eventTime" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="eventEndTime">End Time <span class="optional">(optional)</span></label>
+        <input type="time" id="eventEndTime" />
+      </div>
+      <div class="form-group">
+        <label>Color</label>
+        <div class="color-picker" id="colorPicker">
+          <button type="button" class="color-swatch selected" data-color="#6366f1" style="background:#6366f1" aria-label="Default"></button>
+          <button type="button" class="color-swatch" data-color="#22c55e" style="background:#22c55e" aria-label="Personal"></button>
+          <button type="button" class="color-swatch" data-color="#f59e0b" style="background:#f59e0b" aria-label="Work"></button>
+          <button type="button" class="color-swatch" data-color="#ef4444" style="background:#ef4444" aria-label="Important"></button>
+          <button type="button" class="color-swatch" data-color="#ec4899" style="background:#ec4899" aria-label="Social"></button>
+          <button type="button" class="color-swatch" data-color="#14b8a6" style="background:#14b8a6" aria-label="Health"></button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="eventNote">Note <span class="optional">(optional)</span></label>
+        <textarea id="eventNote" placeholder="Add a note..." rows="2"></textarea>
+      </div>
+      <input type="hidden" id="eventId" />
+      <div class="modal-actions">
+        <button type="button" class="btn-delete hidden" id="deleteEventBtn">Delete</button>
+        <div class="modal-actions-right">
+          <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+          <button type="submit" class="btn-save">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- EVENT DETAIL POPUP -->
+<div class="detail-popup hidden" id="detailPopup">
+  <div class="detail-header">
+    <div class="detail-color-bar" id="detailColorBar"></div>
+    <button class="detail-close" id="detailClose">&times;</button>
+  </div>
+  <div class="detail-body">
+    <div class="detail-title" id="detailTitle"></div>
+    <div class="detail-time" id="detailTime"></div>
+    <div class="detail-note" id="detailNote"></div>
+  </div>
+  <div class="detail-footer">
+    <button class="detail-edit-btn" id="detailEditBtn">Edit</button>
+  </div>
+</div>
+
+<script src="calendar.js"></script>
+</body>
+</html>
