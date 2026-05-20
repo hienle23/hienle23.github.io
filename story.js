@@ -9,8 +9,8 @@ const state = {
 
 // ===== STORY DATA =====
 const CHARS = {
-  leo:   { name: 'Leo Park',     emoji: '🦁', color: '#f43f5e' },
-  marco: { name: 'Marco Rivera', emoji: '🌊', color: '#8b5cf6' },
+  leo:   { name: 'Gideon', img: 'gideon.svg', color: '#f43f5e' },
+  marco: { name: 'Benji',  img: 'benji.svg',  color: '#8b5cf6' },
   kai:   { name: 'Kai',          emoji: '☕', color: '#f59e0b' },
   narrator: { name: 'Narrator',  emoji: '' },
 };
@@ -65,7 +65,7 @@ const STORY = [
       },
       {
         icon: '🤝',
-        text: 'Confidently say: "Split it? I\'m Leo/Marco by the way." and extend your free hand.',
+        text: 'Confidently say: "Split it? I\'m Gideon/Benji by the way." and extend your free hand.',
         score: 15,
         next: 'split_scone',
       },
@@ -76,7 +76,7 @@ const STORY = [
     id: 'leo_drama',
     type: 'dialogue',
     speaker: 'stranger',
-    text: '"That\'s... a lot of emotional weight for a baked good." He\'s smiling though. A real one, not polite. "I\'m Marco. And this scone is not worth dying on a hill for — but I respect the commitment."',
+    text: '"That\'s... a lot of emotional weight for a baked good." He\'s smiling though. A real one, not polite. "I\'m Benji. And this scone is not worth dying on a hill for — but I respect the commitment."',
     next: 'intro_names',
   },
   // — Branch B: Nervous retreat —
@@ -151,7 +151,7 @@ const STORY = [
     type: 'narrate',
     location: 'Corner Table · Velvet Grounds',
     time: 'Same morning',
-    text: 'You split the scone. He introduces himself — Marco Rivera, architect, "accidentally funny" by his own admission. You introduce yourself. He says your name once, slowly, like he\'s deciding if he likes the sound of it. He does.',
+    text: 'You split the scone. He introduces himself — Benji, architect, "accidentally funny" by his own admission. You introduce yourself. He says your name once, slowly, like he\'s deciding if he likes the sound of it. He does.',
     next: 'intro_names',
   },
   {
@@ -361,7 +361,7 @@ const ENDINGS = {
     badge: '🕯️',
     title: 'The Long Game',
     subtitle: '"Some love stories simmer before they catch fire."',
-    story: 'You took your time, and it was worth every second. Marco learned patience. You learned to trust the slow, steady warmth of something real. Six months later, he\'ll design you a reading nook in his apartment. You\'ll call it "our corner." He\'ll pretend he doesn\'t cry when you say that. He absolutely cries.',
+    story: 'You took your time, and it was worth every second. Benji learned patience. You learned to trust the slow, steady warmth of something real. Six months later, he\'ll design you a reading nook in his apartment. You\'ll call it "our corner." He\'ll pretend he doesn\'t cry when you say that. He absolutely cries.',
     scoreLabel: 'Slow Burn Energy',
     minScore: 0,
   },
@@ -369,7 +369,7 @@ const ENDINGS = {
     badge: '🌙',
     title: 'Bench in the Dark',
     subtitle: '"The best conversations are the ones that end with the lights turning off around you."',
-    story: 'You stayed on that bench until a park employee politely asked if you were okay. You were better than okay. You were the beginning of something. Marco texts you the next morning: "Still thinking about last night." You text back: "Same." It\'s the most honest thing you\'ve ever said.',
+    story: 'You stayed on that bench until a park employee politely asked if you were okay. You were better than okay. You were the beginning of something. Benji texts you the next morning: "Still thinking about last night." You text back: "Same." It\'s the most honest thing you\'ve ever said.',
     scoreLabel: 'Romance Points',
     minScore: 0,
   },
@@ -463,9 +463,9 @@ function updateHUD() {
   const playerChar = CHARS[p];
   const otherChar = CHARS[other];
 
-  $('charLeft').textContent = playerChar.emoji;
+  $('charLeft').innerHTML = `<img src="${playerChar.img}" alt="${playerChar.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />`;
   $('charLeft').title = playerChar.name;
-  $('charRight').textContent = otherChar.emoji;
+  $('charRight').innerHTML = `<img src="${otherChar.img}" alt="${otherChar.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />`;
   $('charRight').title = otherChar.name;
 }
 
